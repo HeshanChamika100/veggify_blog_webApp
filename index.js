@@ -9,10 +9,6 @@ app.use(cors());
 
 async function main() {
   await mongoose.connect("mongodb+srv://heshanchamika:heshan@veggify-recipe-app.fd17x8h.mongodb.net/veggify-recipe-app?retryWrites=true&w=majority&appName=veggify-recipe-app");
-
-  app.get("/", (req, res) => {
-    res.send("Veggify Recipe App Server!");
-  });
 }
 
 main().then(() => console.log("Mongodb Connected Successfully")).catch((err) => console.log(err));
@@ -23,6 +19,10 @@ const categoryRoutes = require("./src/routes/categoryRoute");
 
 app.use("/api", itemRoutes);
 app.use("/api", categoryRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Veggify Recipe App Server!");
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
